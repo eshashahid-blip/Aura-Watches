@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register | Aura Watches</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-900: #050406;
+      --gold-500: #ffd000;
+      --gold-600: #ffcf33;
+      --muted: #dddbe0;
+      --glass: rgba(255, 255, 255, 0.05);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg, var(--bg-900), #0b0b0c);
+      color: var(--muted);
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--glass);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255, 215, 0, 0.05);
+      padding: 12px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    .brand h1 {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold-500);
+      font-size: 22px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+    }
+
+    nav ul li a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: var(--gold-500);
+    }
+
+    .controls {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(180deg, var(--gold-500), var(--gold-600));
+      color: #08121a;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .register-container {
+      background: var(--glass);
+      border: 1px solid rgba(255, 215, 0, 0.05);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(12px);
+      width: 100%;
+      max-width: 400px;
+      margin-top: 120px;
+    }
+
+    .register-container h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold-500);
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    .register-container input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: transparent;
+      color: var(--muted);
+      font-size: 14px;
+      outline: none;
+    }
+
+    .register-container button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(180deg, var(--gold-500), var(--gold-600));
+      color: #08121a;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .register-container button:hover {
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
+    }
+
+    .footer-text {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 13px;
+    }
+
+    .footer-text a {
+      color: var(--gold-500);
+      text-decoration: none;
+    }
+
+    .footer-text a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header role="banner" aria-label="Main header">
+  <div class="brand">
+    <a href="aura watches.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+      <img src="./Images/skeleton.jpeg" alt="Aura logo" style="width: 40px; height: 40px; border-radius: 50%;">
+      <h1 style="font-family: 'Playfair Display', serif; color: #ffd000; font-size: 22px;">Aura Watches</h1>
+    </a>
+  </div>
+   <div class="controls" role="group" aria-label="Header controls">
+      <a class="btn" href="login.html">Login</a>
+    </div>
+</header>
+
+
+  <main>
+    <div class="register-container">
+      <h2>Create Account</h2>
+      <form onsubmit="handleRegister(event)">
+        <input type="email" id="regEmail" placeholder="Email" required />
+        <input type="password" id="regPassword" placeholder="Password" required />
+        <button type="submit">Register</button>
+      </form>
+      <p class="footer-text">Already have an account? <a href="login.html">Login</a></p>
+    </div>
+  </main>
+
+  <script>
+    function handleRegister(e) {
+      e.preventDefault();
+      const email = document.getElementById('regEmail').value;
+      const password = document.getElementById('regPassword').value;
+
+      // Save credentials (for demo purposes only)
+      localStorage.setItem('userEmail', email);
+      localStorage.setItem('userPassword', password);
+
+      alert('Registration successful! Redirecting to login...');
+      window.location.href = 'login.html'; // Redirect to login after register
+    }
+  </script>
+</body>
+<footer role="contentinfo" style="
+  width: 100%;
+  background: #000;
+  border-top: 1px solid rgba(255, 215, 0, 0.2);
+  color: #dddbe0;
+  padding: 50px 20px;
+  font-family: 'Poppins', sans-serif;
+  text-align: left;
+  margin-top: 30px;
+">
+  <div style="max-width: 1100px; margin: auto;">
+
+    <!-- Brand -->
+    <div style="margin-bottom: 20px;">
+      <a href="aura-watches.html" style="text-decoration: none; color: #ffd000;">
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 26px;">Aura Watches</h2>
+      </a>
+      <p style="font-size: 13px; color: #aaa;">Timeless elegance, powered by innovation.</p>
+    </div>
+
+    <!-- Site Map -->
+    <div style="
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin-bottom: 30px;
+    ">
+      <a href="./aura watches.html #home" style="color: #dddbe0; text-decoration: none;">Home</a>
+      <a href="./aura watches.html #products" style="color: #dddbe0; text-decoration: none;">Products</a>
+      <a href="./aura watches.html #technology" style="color: #dddbe0; text-decoration: none;">Technology</a>
+      <a href="./aura watches.html #contact" style="color: #dddbe0; text-decoration: none;">Contact</a>
+      <a href="./aura watches.html login.html" style="color: #dddbe0; text-decoration: none;">Login</a>
+      <a href="./aura watches.html register.html" style="color: #dddbe0; text-decoration: none;">Register</a>
+    </div>
+
+     <div style="margin-bottom: 20px;">
+      <a href="aura-watches.html" style="text-decoration: none; color: #ffd000;">
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 26px;">Follow Us At</h2>
+        <p style="font-size: 13px; color: #aaa;">You can share your experience with us</p>
+      </a></div>
+      <div style="
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin-bottom: 30px;
+    ">
+    <a href="https://github.com/login" style="color: #dddbe0; text-decoration: none;">GitHub</a>
+      <a href="https://www.facebook.com/" style="color: #dddbe0; text-decoration: none;">Facebook</a>
+      <a href="https://www.instagram.com/accounts/login/?hl=en" style="color: #dddbe0; text-decoration: none;">Instagram</a>
+      <a href="https://x.com/?lang=en" style="color: #dddbe0; text-decoration: none;">Twitter</a>
+      <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwww.google.com%3Fhl%3Den-US&ec=GAlA8wE&hl=en&flowName=GlifWebSignIn&flowEntry=AddSession&dsh=S-1189932440%3A1760914398303627 " style="color: #dddbe0; text-decoration: none;">Email Us</a>
+    </div>
+
+
+    <!-- Copyright -->
+    <p style="font-size: 13px; color: #777;">© 2025 Aura Watches. All rights reserved.</p>
+  </div>
+</footer>
+</html>

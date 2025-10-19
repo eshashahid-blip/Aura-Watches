@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Aura Luxury — Ultra Premium</title>
+
+
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+
+  /* ============ VARIABLES & RESET ============ */
+  :root{
+    --bg-900:#050406;
+    --bg-800:#0b0b0c;
+    --gold-500:#ffd000;
+    --gold-600:#ffcf33;
+    --muted:#dddbe0;
+    --glass: rgba(255,255,255,0.03);
+    --glass-2: rgba(255,255,255,0.04);
+    --card:#0f0f10;
+    --maxW:1280px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:'Poppins',sans-serif;
+    background:
+      radial-gradient(800px 400px at 10% 10%, rgba(255,208,0,0.02), transparent),
+      radial-gradient(600px 300px at 95% 85%, rgba(255,180,0,0.015), transparent),
+      linear-gradient(180deg,var(--bg-900),var(--bg-800));
+    color:var(--muted);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    overflow-x:hidden;
+    line-height:1.45;
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important; transition:none!important}
+  }
+
+  /* ============ CONTAINER ============ */
+  .wrap{max-width:var(--maxW);margin:36px auto;padding:0 22px}
+
+  /* ============ HEADER ============ */
+  header{
+    position:sticky; top:14px; z-index:1200; backdrop-filter: blur(8px) saturate(1.05);
+    margin:0 auto; width:calc(100% - 44px);
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.008));
+    border-radius:14px;
+    border:1px solid rgba(255,215,0,0.04);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  }
+  .header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 18px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand img{height:56px;width:56px;object-fit:cover;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.7)}
+  .brand h1{font-family:'Playfair Display',serif;color:var(--gold-500);font-size:20px;letter-spacing:0.6px}
+  nav ul{display:flex;gap:20px;list-style:none;align-items:center}
+  nav a{color:var(--muted);text-decoration:none;font-weight:600;padding:8px 10px;border-radius:8px;transition:all .25s}
+  nav a:hover{color:var(--gold-500);transform:translateY(-3px)}
+  .controls{display:flex;gap:10px;align-items:center}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:10px;font-weight:700;text-decoration:none;border:1px solid rgba(255,255,255,0.04);
+    background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.006));
+    color:var(--muted)
+  }
+  .btn.golden{background:linear-gradient(180deg,var(--gold-500),var(--gold-600)); color:#08121a;box-shadow: 0 10px 40px rgba(255,190,20,0.06);}
+
+  /* ============ HERO ============ */
+  .hero{
+    margin-top:18px;
+    display:grid; grid-template-columns: 1fr 520px; gap:28px; align-items:center;
+    background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.006));
+    border-radius:18px; padding:28px; border:1px solid rgba(255,215,0,0.03);
+    box-shadow: 0 40px 90px rgba(0,0,0,0.65);
+    position:relative; overflow:visible;
+  }
+
+  .hero-left .eyebrow{ display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,215,0,0.06);color:var(--gold-500);font-weight:800;font-size:13px;margin-bottom:14px}
+  .hero-title{font-family:'Playfair Display',serif;color:var(--gold-500);font-size:46px;line-height:1.02;margin-bottom:14px;text-shadow:0 8px 40px rgba(0,0,0,0.6)}
+  .hero-sub{color:#e6e6e6;max-width:70%;font-size:16px;margin-bottom:18px}
+  .hero-actions{display:flex;gap:12px;align-items:center}
+
+  /* HERO VISUAL (PARALLAX + 3D) */
+  .hero-visual{position:relative; width:100%; height:520px; display:flex; align-items:center; justify-content:center; perspective:1600px}
+  .visual-card{
+    width:460px;height:460px;border-radius:22px;overflow:visible; position:relative;
+    transform-style:preserve-3d; transition:transform .35s ease; will-change:transform;
+    border:1px solid rgba(255,255,255,0.02);
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));
+    box-shadow: 0 40px 120px rgba(0,0,0,0.7);
+  }
+  .visual-card img{width:100%;height:100%;object-fit:cover;border-radius:18px; transform: translateZ(60px) scale(1.02); transition:transform .6s cubic-bezier(.2,.9,.29,1)}
+  .visual-overlay{
+    position:absolute;inset:0;border-radius:18px;pointer-events:none;
+    background: linear-gradient(180deg, rgba(255,215,0,0.02), transparent 25%, rgba(255,255,255,0.01));
+    mix-blend-mode: screen;
+  }
+  .halo{
+    position:absolute; left:50%; transform:translateX(-50%); bottom:-40px; width:70%; height:120px; filter:blur(30px);
+    background: radial-gradient(closest-side, rgba(255,200,30,0.12), transparent 50%);
+    border-radius:50%;
+  }
+
+  /* tiny floating labels */
+  .hero-info{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+  .pill{background:rgba(255,255,255,0.02);padding:8px 12px;border-radius:999px;border:1px solid rgba(255,215,0,0.03);font-weight:700;color:var(--muted)}
+
+  /* ============ COLLECTIONS ============ */
+  .collections{margin-top:30px; display:grid; grid-template-columns: repeat(3,1fr); gap:22px}
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.012), rgba(0,0,0,0.02)); padding:14px; border-radius:14px; border:1px solid rgba(255,255,255,0.02)}
+  .card .img{height:300px;border-radius:12px;overflow:hidden}
+  .card .img img{width:100%;height:100%;object-fit:cover;display:block}
+  .card h3{font-family:'Playfair Display',serif;color:var(--gold-500);margin:12px 0 6px}
+  .card p{color:#dcdcdc;font-size:14px}
+  .card-actions{display:flex;gap:10px;margin-top:10px}
+
+  /* ============ TECHNOLOGY & CONTACT ============ */
+  .split{display:grid;grid-template-columns:1fr 420px;gap:20px;margin-top:28px}
+  .tech{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .tech-item{background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
+  .contact{padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.02)}
+
+  /* ============ MODAL ============ */
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,0.75);display:none;align-items:center;justify-content:center;z-index:2000;padding:28px}
+  .modal.open{display:flex}
+  .modal-card{max-width:980px;width:100%;background:#080808;padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+  .modal-card img{width:100%;height:auto;border-radius:8px;display:block}
+  .modal-close{position:absolute;right:28px;top:28px;background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px;border-radius:10px;color:var(--muted)}
+
+  /* ============ FLOATING PAYPAL CTA ============ */
+  .float-buy{position:fixed;right:18px;bottom:18px;z-index:1500;display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:999px;background:linear-gradient(180deg,var(--gold-500),var(--gold-600));box-shadow:0 20px 60px rgba(0,0,0,0.6);color:#07121a;font-weight:800}
+
+  /* ============ PARTICLE CURSOR (canvas) ============ */
+  #cursorCanvas{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:1400;mix-blend-mode:screen}
+
+  /* ============ FOOTER ============ */
+  footer{margin-top:36px;padding:20px;border-radius:12px;text-align:center;color:var(--gold-500);font-weight:700}
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:1100px){ .hero{grid-template-columns:1fr 420px} .collections{grid-template-columns:repeat(2,1fr)} .split{grid-template-columns:1fr} }
+  @media (max-width:700px){ .hero{grid-template-columns:1fr; padding:18px} .hero-visual{height:420px} .visual-card{width:360px;height:360px} .collections{grid-template-columns:1fr} nav ul{display:none} .header-inner{gap:8px} .brand h1{font-size:16px} }
+/* ... existing styles ... */
+
+/* NEW: Styles for the menu toggle button */
+.menu-toggle {
+  display: none; /* Hide by default on large screens */
+  order: 1; /* Place it nicely next to the brand */
+}
+
+/* * IMPORTANT: This media query section is where we redefine the mobile navigation. 
+ * We are removing the old 'nav ul{display:none}' and replacing it with the following:
+ */
+@media (max-width: 700px) { 
+  .hero{grid-template-columns:1fr; padding:18px} 
+  .hero-visual{height:420px} 
+  .visual-card{width:360px;height:360px} 
+  .collections{grid-template-columns:1fr} 
+
+  /* * NEW MOBILE MENU STYLES 
+   */
+  .header-inner { 
+    flex-wrap: wrap; /* Allow items to stack */
+  }
+  .brand {
+    flex-grow: 1; /* Allow brand to take space */
+  }
+  
+  /* Show the hamburger button */
+  .menu-toggle {
+    display: block; 
+  }
+  
+  /* The main navigation list */
+  nav {
+    width: 100%; /* Take full width */
+    margin-top: 10px;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease-out;
+    background: var(--glass-2);
+    border-radius: 10px;
+  }
+  nav ul {
+    /* Reset display:none from old style */
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 10px 0;
+  }
+  nav a {
+    display: block;
+    padding: 12px 18px;
+  }
+
+  /* State when the menu is OPEN */
+  .header-inner[data-menu-open="true"] nav {
+    height: auto;
+    /* Add max-height to smoothly transition open state */
+    max-height: 400px; 
+    border: 1px solid rgba(255,215,0,0.04);
+  }
+  
+  .brand h1{font-size:16px}
+}
+
+.btn{background:linear-gradient(180deg,var(--gold-500),var(--gold-600)); color:#08121a;box-shadow: 0 10px 40px rgba(255,190,20,0.06);
+}
+.btn:hover{
+    color: maroon;
+}
+
+/* ADD THIS TO FIX THE OVERLAP CAUSED BY THE STICKY HEADER */
+.hero {
+  margin-top: 18px; /* Existing margin */
+  /* Add enough space to push the hero down past the fixed header */
+  padding-top: 120px; 
+}
+</style>
+</head>
+<body>
+
+  
+
+<!-- PARTICLE CURSOR CANVAS -->
+<canvas id="cursorCanvas" aria-hidden="true"></canvas>
+
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header role="banner" aria-label="Main header">
+    <div class="header-inner">
+      <div class="brand">
+        <img src="./Images/skeleton.jpeg" alt="Aura logo">
+        <h1>Aura Watches</h1>
+      </div>
+
+      <nav id="mainNav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#technology">Technology</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      
+      <div class="controls" role="group" aria-label="Header controls">
+        <button class="btn menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mainNav">
+          ☰ Menu
+        </button>
+        
+      </div>
+
+      <div class="controls" role="group" aria-label="Header controls">
+        <a class="btn" href="login.html">Login</a> <!-- NEW LOGIN BUTTON -->
+        <a class="btn golden" href="./aura watches.html">Explore</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="hero" aria-label="Hero section">
+    <div class="hero-left">
+      <span class="eyebrow">LIMITED • NEW DROP</span>
+      <h2 class="hero-title">Timeless Luxury — <span style="color:var(--muted)">Redefined</span></h2>
+      <p class="hero-sub">Hand-finished cases, sapphire crystal, precision movements — designed for collectors who expect perfection.</p>
+
+      <div class="hero-actions">
+        <a class="btn golden" href="#products">View Collections</a>
+        <a class="btn" href="#technology">Why Aura?</a>
+        <a class="btn" href="#contact">Contact</a>
+      </div>
+
+      <div class="hero-info" aria-hidden="false">
+        <span class="pill">100m Water Resistance</span>
+        <span class="pill">Sapphire Glass</span>
+        <span class="pill">Swiss Components</span>
+      </div>
+
+      <!-- small animated badges -->
+      <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap">
+        <div class="pill">Limited Edition</div>
+        <div class="pill">5-Year Warranty</div>
+      </div>
+    </div>
+
+    <!-- HERO VISUAL: uses pic/213.jpg as requested -->
+    <div class="hero-visual" id="heroVisual" aria-hidden="false">
+      <div class="visual-card" id="visualCard" role="img" aria-label="Hero watch preview">
+        <img src="./Images/213.jpg" alt="Sportz watch — hero preview" id="heroImg">
+        <div class="visual-overlay"></div>
+        <div class="halo" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <main id="products" aria-labelledby="productsTitle" style="margin-top:26px">
+    <h2 id="productsTitle" style="font-family:'Playfair Display',serif;color:var(--gold-500);font-size:32px">Our Collections</h2>
+
+    <div class="collections" style="margin-top:18px">
+      <article class="card" data-full="pic/213.jpg">
+        <div class="img"><img src="./Images/213.jpg" alt="SPORTZ Collection"></div>
+        <h3>SPORTZ Collection</h3>
+        <p>Designed for active lifestyles, luminous indices and robust cases — engineered for performance.</p>
+        <div class="card-actions">
+          <a class="btn" href="https://aura.watch/" target="_blank" rel="noopener">View Details</a>
+          
+        </div>
+      </article>
+
+      <article class="card" data-full="pic/watch.jpg">
+        <div class="img"><img src="./Images/img 3.jpg" alt="PREMIER Collection"></div>
+        <h3>PREMIER Collection</h3>
+        <p>Elegant proportions and timeless finish — perfect for formal occasions and statement wear.</p>
+        <div class="card-actions">
+          <a class="btn" href="https://aura.watch/" target="_blank" rel="noopener">View Details</a>
+          
+        </div>
+      </article>
+
+      <article class="card" data-full="im/watch2.jpg">
+        <div class="img"><img src="./Images/skeleton.jpeg" alt="Aura Skeleton Mechanical"></div>
+        <h3>Aura Skeleton Mechanical</h3>
+        <p>Open-worked dial and sapphire bezel — a mechanical showpiece for connoisseurs.</p>
+        <div class="card-actions">
+          <a class="btn" href="https://aura.watch/" target="_blank" rel="noopener">View Details</a>
+          
+        </div>
+      </article>
+    </div>
+
+    <!-- tech + contact split -->
+    <div class="split">
+      <section id="technology" class="tech" aria-labelledby="techTitle">
+        <h3 id="techTitle" style="grid-column:span 2;font-family:'Playfair Display',serif;color:var(--gold-500);margin-bottom:6px">Technology</h3>
+        <div class="tech-item"><strong>Quartz & Automatic</strong><div style="color:#dcdcdc;margin-top:6px">Swiss-regulated accuracy with careful assembly.</div></div>
+        <div class="tech-item"><strong>Sapphire Crystal</strong><div style="color:#dcdcdc;margin-top:6px">Anti-reflective, highly scratch resistant.</div></div>
+        <div class="tech-item"><strong>Water Resistance</strong><div style="color:#dcdcdc;margin-top:6px">Up to 100M depending on model.</div></div>
+        <div class="tech-item"><strong>Eco Solar</strong><div style="color:#dcdcdc;margin-top:6px">Hybrid options for reduced battery changes.</div></div>
+      </section>
+
+      <aside id="contact" class="contact" aria-labelledby="contactTitle">
+        <h3 id="contactTitle" style="font-family:'Playfair Display',serif;color:var(--gold-500)">Contact Us</h3>
+        <p style="color:#e6e6e6;font-weight:700">Email: <a style="color:var(--gold-500)" href="mailto:muhammadaaa1728@gmail.com">muhammadaaa1728@gmail.com</a></p>
+        <p style="color:#e6e6e6;font-weight:700">Phone: <strong>+92 3114456979</strong></p>
+
+        <form onsubmit="contactSubmit(event)" style="margin-top:12px">
+          <label style="display:block;color:#ddd;margin-bottom:6px">Name</label>
+          <input id="cname" placeholder="Your name" style="width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--muted)">
+          <label style="display:block;color:#ddd;margin:8px 0 6px">Email</label>
+          <input id="cemail" type="email" placeholder="you@example.com" style="width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--muted)">
+          <label style="display:block;color:#ddd;margin:8px 0 6px">Message</label>
+          <textarea id="cmsg" placeholder="How can we help?" style="width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--muted);min-height:90px"></textarea>
+          <button class="btn golden" type="submit" style="margin-top:10px">Send Message</button>
+        </form>
+      </aside>
+    </div>
+  </main>
+
+  <!-- MODAL PREVIEW -->
+  <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-label="Image preview">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose" aria-label="Close preview">✕</button>
+      <img id="modalImg" src="./Images/Copy of 213.jpg" alt="Preview image">
+    </div>
+  </div>
+
+  <!-- FLOATING PAYPAL CTA -->
+  <a class="float-buy" href="https://www.paypal.com" target="_blank" rel="noopener" aria-label="Buy with PayPal">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#fff6d8" stroke="#08121a" stroke-width="0.8"/><path d="M8.5 15.5L11 9l3 6.5" stroke="#08121a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span style="font-weight:900;color:#08121a">Buy with PayPal</span>
+  </a>
+</div>
+
+<!-- AUDIO (user-controlled) -->
+<audio id="ambientAudio" loop preload="none">
+  <!-- gentle mechanical tick + soft chime layered (small base64 beep could be inserted, but using src to local file recommended) -->
+  <!-- If you add an audio file, set src here, e.g. src="assets/tick-loop.mp3" -->
+</audio>
+
+<script>
+/* ================== INTERACTIONS ================== */
+
+/* Helper */
+const $ = (s, r=document) => r.querySelector(s);
+
+/* 1) HERO PARALLAX & 3D TILT */
+const visualCard = $('#visualCard');
+const heroVisual = $('#heroVisual');
+let rect;
+function updateRect(){ rect = visualCard.getBoundingClientRect(); }
+updateRect();
+window.addEventListener('resize', updateRect);
+
+// 3D tilt on pointer move
+heroVisual.addEventListener('pointermove', (e) => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const cx = rect.left + rect.width/2;
+  const cy = rect.top + rect.height/2;
+  const dx = (e.clientX - cx) / rect.width;
+  const dy = (e.clientY - cy) / rect.height;
+  const ry = dx * 10; // rotateY
+  const rx = -dy * 10; // rotateX
+  visualCard.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateZ(0)`;
+  const img = $('#heroImg');
+  img.style.transform = `translateZ(60px) scale(${1.02 + Math.abs(dx+dy)*0.01})`;
+});
+heroVisual.addEventListener('pointerleave', () => {
+  visualCard.style.transform = 'rotateX(0) rotateY(0) translateZ(0)';
+  $('#heroImg').style.transform = 'translateZ(60px) scale(1.02)';
+});
+
+
+
+/* 2) MODAL IMAGE PREVIEW */
+const modal = $('#modal'), modalImg = $('#modalImg'), modalClose = $('#modalClose');
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('click', () => {
+    const src = card.dataset.full || card.querySelector('img')?.src;
+    if (!src) return;
+    modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
+    modalImg.src = src;
+  });
+});
+modalClose.addEventListener('click', () => { modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); modalImg.src=''; });
+modal.addEventListener('click', (e) => { if (e.target === modal) { modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); modalImg.src=''; } });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('open')) { modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); modalImg.src=''; } });
+
+/* 3) CONTACT FORM (no backend) */
+function contactSubmit(e){ e.preventDefault();
+  const name = $('#cname').value?.trim(), email = $('#cemail').value?.trim(), msg = $('#cmsg').value?.trim();
+  if (!name || !email || !msg) { alert('Please fill all fields'); return; }
+  alert('Thanks, ' + name + '! Message received. We will reply at ' + email + '.');
+  $('#cname').value=''; $('#cemail').value=''; $('#cmsg').value='';
+}
+
+/* 4) FLOATING AUDIO (user toggles) - browsers block autoplay, so we play only after user interaction */
+const soundBtn = $('#soundToggle');
+const ambient = $('#ambientAudio');
+let soundOn = false;
+// For demo: create a subtle tick synthetic audio using WebAudio (fallback if no file provided)
+let audioContext;
+let tickSource;
+function prepareTick(){
+  if (audioContext) return;
+  audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  // create a gentle ticking loop using oscillator + gain envelope (very subtle)
+  const gain = audioContext.createGain(); gain.gain.value = 0.02; // low volume
+  gain.connect(audioContext.destination);
+  function playTick(){
+    const o = audioContext.createOscillator();
+    o.type = 'sine';
+    o.frequency.value = 100;
+    const g = audioContext.createGain();
+    g.gain.setValueAtTime(0, audioContext.currentTime);
+    g.gain.linearRampToValueAtTime(1, audioContext.currentTime + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 0.25);
+    o.connect(g); g.connect(gain);
+    o.start(); o.stop(audioContext.currentTime + 0.25);
+  }
+  // schedule ticks every 1s
+  tickSource = setInterval(playTick, 1000);
+  // play 3 ticks immediately for instant feedback
+  playTick(); setTimeout(playTick, 250); setTimeout(playTick, 620);
+}
+
+soundBtn.addEventListener('click', async () => {
+  if (!soundOn){
+    // resume context on first user gesture
+    try{
+      if (!audioContext) prepareTick();
+      if (audioContext && audioContext.state === 'suspended') await audioContext.resume();
+      soundOn = true; soundBtn.textContent = '🔔 Sound On';
+      soundBtn.classList.add('active');
+    }catch(err){ console.warn('Audio failed:',err); alert('Audio disabled by browser or unavailable.'); }
+  } else {
+    soundOn = false; soundBtn.textContent = '🔔 Sound Off';
+    soundBtn.classList.remove('active');
+    if (tickSource) { clearInterval(tickSource); tickSource = null; }
+    if (audioContext) { try{ audioContext.close(); }catch(e){} audioContext=null; }
+  }
+});
+
+/* 5) PARTICLE CURSOR (canvas) */
+const canvas = document.getElementById('cursorCanvas');
+const ctx = canvas.getContext('2d');
+let particles = [], mouse = {x:-1000,y:-1000}, width=innerWidth, height=innerHeight;
+function resizeCanvas(){ width = canvas.width = innerWidth; height = canvas.height = innerHeight; }
+resizeCanvas(); window.addEventListener('resize', resizeCanvas);
+
+function spawnParticle(x,y){
+  particles.push({
+    x,y,
+    vx:(Math.random()-0.5)*1.2,
+    vy:(Math.random()-0.5)*1.2,
+    life: 60 + Math.random()*30,
+    size: 6 + Math.random()*8,
+    hue: 40 + Math.random()*25
+  });
+}
+window.addEventListener('pointermove', (e)=>{
+  mouse.x = e.clientX; mouse.y = e.clientY;
+  // spawn a few particles
+  for(let i=0;i<2;i++) spawnParticle(e.clientX + (Math.random()-0.5)*8, e.clientY + (Math.random()-0.5)*8);
+});
+
+function animateParticles(){
+  ctx.clearRect(0,0,width,height);
+  for(let i=particles.length-1;i>=0;i--){
+    const p = particles[i];
+    p.x += p.vx; p.y += p.vy; p.life--;
+    p.vx *= 0.99; p.vy *= 0.99;
+    const alpha = Math.max(0, p.life / 100);
+    ctx.beginPath();
+    const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size);
+    g.addColorStop(0, `rgba(255,220,90,${alpha})`);
+    g.addColorStop(0.4, `rgba(255,180,20,${alpha*0.6})`);
+    g.addColorStop(1, `rgba(255,180,20,0)`);
+    ctx.fillStyle = g;
+    ctx.fillRect(p.x - p.size, p.y - p.size, p.size*2, p.size*2);
+    if (p.life <= 0) particles.splice(i,1);
+  }
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+/* 6) LAZY LOADING & ACCESSIBLE IMAGE ACTIONS */
+document.querySelectorAll('img').forEach(img => { img.loading = 'lazy'; img.style.cursor = 'zoom-in'; });
+// Header logo should not open modal
+document.querySelectorAll('.brand img').forEach(i=> i.style.cursor='default');
+
+/* 7) REVEAL ON SCROLL (subtle) */
+const revealables = document.querySelectorAll('.card, .tech-item, .hero-left');
+function revealCheck(){ revealables.forEach(el => {
+  const r = el.getBoundingClientRect();
+  if (r.top < window.innerHeight * 0.9) el.style.opacity = 1, el.style.transform = 'none';
+  else { el.style.opacity = 0; el.style.transform = 'translateY(14px)'; }
+});}
+revealCheck();
+window.addEventListener('scroll', revealCheck);
+
+/* 8) Accessibility: keyboard close modal */
+document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ if(modal.classList.contains('open')){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); modalImg.src=''; } } });
+
+/* 9) small helper: show modal when clicking any big image (except logo) */
+document.querySelectorAll('img').forEach(img => {
+  img.addEventListener('click', (ev)=>{
+    if (img.closest('.brand')) return;
+    // ignore tiny images
+    if ((img.naturalWidth && img.naturalWidth < 60) || img.alt?.toLowerCase()?.includes('logo')) return;
+    modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); modalImg.src = img.src;
+  });
+});
+
+/* 10) small performance: reduce particle spawn on mobile */
+if (/Mobi|Android/i.test(navigator.userAgent)) {
+  window.removeEventListener('pointermove', ()=>{});
+  // spawn fewer particles on touch
+  window.addEventListener('touchmove', function(e){
+    const t = e.touches[0];
+    if (!t) return;
+    for(let i=0;i<1;i++) spawnParticle(t.clientX, t.clientY);
+  }, {passive:true});
+}
+
+/* 11) ensure canvas doesn't block interactions on mobile (pointer-events none already) */
+
+/* 12) initial micro-animations (fade-in) */
+document.querySelectorAll('.card, .hero-left, .tech-item').forEach((el,i)=>{
+  el.style.opacity = 0; el.style.transform = 'translateY(14px)';
+  setTimeout(()=>{ el.style.transition='all .7s cubic-bezier(.2,.9,.18,1)'; el.style.opacity=1; el.style.transform='none'; }, 200 + i*80);
+});
+/* ... existing JavaScript ... */
+
+/* 13) MOBILE MENU TOGGLE */
+const menuToggle = $('#menuToggle');
+const headerInner = $('.header-inner');
+const mainNav = $('#mainNav');
+
+menuToggle.addEventListener('click', () => {
+  const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+  const newState = !isExpanded;
+  
+  menuToggle.setAttribute('aria-expanded', newState);
+  headerInner.setAttribute('data-menu-open', newState);
+  menuToggle.textContent = newState ? '✕ Close' : '☰ Menu';
+});
+
+// Close menu when a navigation link is clicked (mobile friendly)
+document.querySelectorAll('#mainNav a').forEach(link => {
+  link.addEventListener('click', () => {
+    // Only collapse if the menu is open
+    if (menuToggle.getAttribute('aria-expanded') === 'true') {
+      menuToggle.click();
+    }
+  });
+});
+// You must also replace the soundToggle button at the top of the body (outside header)
+// with the new menu button and remove the duplicated controls div outside the header.
+</script>
+</body>
+<footer role="contentinfo" style="
+  width: 100%;
+  background: #000;
+  border-top: 1px solid rgba(255, 215, 0, 0.2);
+  color: #dddbe0;
+  padding: 50px 20px;
+  font-family: 'Poppins', sans-serif;
+  text-align: left;
+  margin-top: 30px;
+">
+  <div style="max-width: 1100px; margin: auto;">
+
+    <!-- Brand -->
+    <div style="margin-bottom: 20px;">
+      <a href="aura-watches.html" style="text-decoration: none; color: #ffd000;">
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 26px;">Aura Watches</h2>
+      </a>
+      <p style="font-size: 13px; color: #aaa;">Timeless elegance, powered by innovation.</p>
+    </div>
+
+    <!-- Site Map -->
+    <div style="
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin-bottom: 30px;
+    ">
+      <a href="./aura watches.html #home" style="color: #dddbe0; text-decoration: none;">Home</a>
+      <a href="./aura watches.html #products" style="color: #dddbe0; text-decoration: none;">Products</a>
+      <a href="./aura watches.html #technology" style="color: #dddbe0; text-decoration: none;">Technology</a>
+      <a href="./aura watches.html #contact" style="color: #dddbe0; text-decoration: none;">Contact</a>
+      <a href="./aura watches.html login.html" style="color: #dddbe0; text-decoration: none;">Login</a>
+      <a href="./aura watches.html register.html" style="color: #dddbe0; text-decoration: none;">Register</a>
+    </div>
+
+     <div style="margin-bottom: 20px;">
+      <a href="aura-watches.html" style="text-decoration: none; color: #ffd000;">
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 26px;">Follow Us At</h2>
+        <p style="font-size: 13px; color: #aaa;">You can share your experience with us</p>
+      </a></div>
+      <div style="
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin-bottom: 30px;
+    ">
+    <a href="https://github.com/login" style="color: #dddbe0; text-decoration: none;">GitHub</a>
+      <a href="https://www.facebook.com/" style="color: #dddbe0; text-decoration: none;">Facebook</a>
+      <a href="https://www.instagram.com/accounts/login/?hl=en" style="color: #dddbe0; text-decoration: none;">Instagram</a>
+      <a href="https://x.com/?lang=en" style="color: #dddbe0; text-decoration: none;">Twitter</a>
+      <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwww.google.com%3Fhl%3Den-US&ec=GAlA8wE&hl=en&flowName=GlifWebSignIn&flowEntry=AddSession&dsh=S-1189932440%3A1760914398303627 " style="color: #dddbe0; text-decoration: none;">Email Us</a>
+    </div>
+
+
+    <!-- Copyright -->
+    <p style="font-size: 13px; color: #777;">© 2025 Aura Watches. All rights reserved.</p>
+  </div>
+</footer>
+</html>
